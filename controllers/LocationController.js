@@ -1,4 +1,5 @@
 const { Location } = require('../database/models');
+const { throwError } = require('../helpers/errorHelper');
 
 /**
  * LocationController constructor
@@ -42,7 +43,27 @@ LocationController.updateLocation = async (req, res, next) => {
   try {
     const location = await Location
       .update(updateValues, { where: { id }, returning: true });
-    res.status(201).json({ location: location[1][0] });
+    res.status(200).json({ location: location[1][0] });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ * Delete location controller
+ * @param {Object} req request object
+ * @param {Object} res response object
+ * @param {Function} next next function in the
+ * middleware chain
+ * @returns {Object} response object
+ */
+LocationController.deleteLocation = async (req, res, next) => {
+  const { id } = req.params;
+  const { user: { role } } = req;
+  try {
+    if (role !== 'admin') throwError('Permission denied', 403);
+    await Location.destroy({ where: { id } });
+    res.status(200).json();
   } catch (err) {
     next(err);
   }

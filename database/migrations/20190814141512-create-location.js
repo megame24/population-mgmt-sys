@@ -16,7 +16,7 @@ module.exports = {
       },
       parentId: {
         type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
+        onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
         references: {
           model: 'Locations',
