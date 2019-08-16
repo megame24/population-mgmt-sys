@@ -25,4 +25,27 @@ LocationController.createLocation = async (req, res, next) => {
   }
 };
 
+/**
+ * Update location controller
+ * @param {Object} req request object
+ * @param {Object} res response object
+ * @param {Function} next next function in the
+ * middleware chain
+ * @returns {Object} response object
+ */
+LocationController.updateLocation = async (req, res, next) => {
+  const { id } = req.params;
+  const updateValues = {};
+  Object.keys(req.body).forEach((key) => {
+    if (req.body[key]) updateValues[key] = req.body[key];
+  });
+  try {
+    const location = await Location
+      .update(updateValues, { where: { id }, returning: true });
+    res.status(201).json({ location: location[1][0] });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = LocationController;
