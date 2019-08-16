@@ -69,4 +69,21 @@ LocationController.deleteLocation = async (req, res, next) => {
   }
 };
 
+/**
+ * Get locations controller
+ * @param {Object} req request object
+ * @param {Object} res response object
+ * @param {Function} next next function in the
+ * middleware chain
+ * @returns {Object} response object
+ */
+LocationController.getLocations = async (req, res, next) => {
+  try {
+    const locations = await Location.findAll();
+    res.status(200).json({ locations });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = LocationController;
