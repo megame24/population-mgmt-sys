@@ -1,4 +1,6 @@
 'use strict';
+const defaultAttributes = ['id', 'name', 'email', 'role',]
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     name: {
@@ -18,7 +20,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'user'
     }
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: defaultAttributes
+    },
+    scopes: {
+      withPassword: {
+        attributes: [...defaultAttributes, 'password']
+      }
+    }
+  });
   User.associate = function(models) {
     // associations can be defined here
   };

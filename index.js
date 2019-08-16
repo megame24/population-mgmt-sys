@@ -6,7 +6,7 @@ const app = express();
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const port = process.env.PORT || 3005;
+const port = process.env.PORT || 3009;
 
 require('dotenv').config();
 
