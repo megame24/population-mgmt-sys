@@ -64,7 +64,7 @@ AuthController.login = async (req, res, next) => {
       id: user.id
     };
     const token = tokenService.generateToken(tokenPayload);
-    res.status(201).json({
+    res.status(200).json({
       user,
       token,
       expiresIn: process.env.TOKEN_EXPIRES_IN

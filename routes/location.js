@@ -1,5 +1,7 @@
 const { Router } = require('express');
-const { createLocation, updateLocation } = require('../controllers/LocationController');
+const {
+  createLocation, updateLocation, deleteLocation
+} = require('../controllers/LocationController');
 const { authenticateUser } = require('../middleware/authMiddleware');
 const { validateCreate, validateUpdate } = require('../middleware/validation/locationValidator');
 
@@ -17,6 +19,12 @@ router.put(
   authenticateUser,
   validateUpdate,
   updateLocation
+);
+
+router.delete(
+  '/location/:id',
+  authenticateUser,
+  deleteLocation
 );
 
 module.exports = router;
