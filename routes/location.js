@@ -8,27 +8,27 @@ const { validateCreate, validateUpdate } = require('../middleware/validation/loc
 const router = Router();
 
 router.post(
-  '/location',
+  '/locations',
   authenticateUser,
   validateCreate,
   createLocation
 );
 
 router.put(
-  '/location/:id',
+  '/locations/:id',
   authenticateUser,
   validateUpdate,
   updateLocation
 );
 
 router.delete(
-  '/location/:id',
+  '/locations/:id',
   authenticateUser,
   deleteLocation
 );
 
 router.get(
-  '/location',
+  '/locations',
   authenticateUser,
   getLocations
 );

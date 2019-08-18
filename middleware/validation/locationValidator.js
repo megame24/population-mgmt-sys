@@ -27,7 +27,7 @@ LocationValidator.prototype.validateCreate = async (req, res, next) => {
     if (parentId) {
       if (isNaN(parentId)) throwError('The field parentId must be an integer', 400);
       const parentLocation = await Location.findByPk(parentId);
-      if (!parentLocation) throwError('Parent location not found', 400);
+      if (!parentLocation) throwError('Parent location not found', 404);
     }
     return next();
   } catch (err) {
