@@ -1,5 +1,8 @@
 # population-mgmt-sys
 
+[![Build Status](https://travis-ci.org/megame24/population-mgmt-sys.svg?branch=develop)](https://travis-ci.org/megame24/population-mgmt-sys)
+[![Coverage Status](https://coveralls.io/repos/github/megame24/population-mgmt-sys/badge.svg?branch=develop)](https://coveralls.io/github/megame24/population-mgmt-sys?branch=develop)
+
 The link to the API deployed to heroku: https://pop-mgmt-sys.herokuapp.com/
 
 ## Installation

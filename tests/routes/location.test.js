@@ -8,10 +8,6 @@ let token;
 let adminToken;
 let location1Id;
 describe('Locations routes', () => {
-  afterAll((done) => {
-    models.sequelize.close();
-    done();
-  });
   beforeAll((done) => {
     request(app)
       .post('/api/auth/register')

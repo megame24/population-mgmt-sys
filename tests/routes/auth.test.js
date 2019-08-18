@@ -1,6 +1,5 @@
 const request = require('supertest');
 const app = require('../../index');
-const models = require('../../database/models');
 
 describe('Users routes', () => {
   describe('Testing user registration', () => {
