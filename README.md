@@ -35,7 +35,7 @@ EndPoint                      |   Functionality
 ------------------------------|------------------------
 POST /auth/register        |   User sign up
 POST /auth/login             |   User login
-POST /locations         |   Create location(requires: femalePopulation, malePopulation, parentId(optional))(only available to admin)
+POST /locations         |   Create location(requires: name, femalePopulation, malePopulation, parentId(optional))(only available to admin)
 GET /locations       |   Get list of locations
 PUT  /locations/:locationId         |   Update location(only available to admin)
 DELETE  /locations/:locationId      |   Delete location(only available to admin)

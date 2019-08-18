@@ -16,10 +16,11 @@ function LocationValidator() {}
  * @returns {Function} next
  */
 LocationValidator.prototype.validateCreate = async (req, res, next) => {
-  let { femalePopulation, malePopulation, parentId } = req.body;
+  let { femalePopulation, malePopulation, parentId, name } = req.body;
   const { user: { role } } = req;
   try {
     if (role !== 'admin') throwError('Permission denied', 403);
+    if (!name) throwError('The field name is required', 400);
     if (!femalePopulation) throwError('The field femalePopulation is required', 400);
     if (isNaN(femalePopulation)) throwError('The field femalePopulation must be an integer', 400);
     if (!malePopulation) throwError('The field malePopulation is required', 400);

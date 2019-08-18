@@ -17,10 +17,10 @@ function LocationController() { }
  * @returns {Object} response object
  */
 LocationController.createLocation = async (req, res, next) => {
-  let { femalePopulation, malePopulation, parentId } = req.body;
+  let { femalePopulation, malePopulation, parentId, name } = req.body;
   try {
     const location = await Location
-      .create({ femalePopulation, malePopulation, parentId }, { returning: true });
+      .create({ femalePopulation, malePopulation, parentId, name }, { returning: true });
     res.status(201).json({ location });
   } catch (err) {
     next(err);
