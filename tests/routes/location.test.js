@@ -76,11 +76,26 @@ describe('Locations routes', () => {
           done();
         });
     });
-    it('Should return 400 if femalePopulation is not provided', (done) => {
+    it('Should return 400 if name is not provided', (done) => {
       request(app)
         .post('/api/locations')
         .set({ token: adminToken })
         .send({})
+        .expect(400)
+        .end((err, res) => {
+          expect(res.body).toHaveProperty('error');
+          expect(res.body.error).toHaveProperty('message');
+          expect(res.body.error.message).toEqual('The field name is required');
+          done();
+        });
+    });
+    it('Should return 400 if femalePopulation is not provided', (done) => {
+      request(app)
+        .post('/api/locations')
+        .set({ token: adminToken })
+        .send({
+          name: 'Lagos'
+        })
         .expect(400)
         .end((err, res) => {
           expect(res.body).toHaveProperty('error');
@@ -94,6 +109,7 @@ describe('Locations routes', () => {
         .post('/api/locations')
         .set({ token: adminToken })
         .send({
+          name: 'Lagos',
           femalePopulation: 'not_an_integer'
         })
         .expect(400)
@@ -109,6 +125,7 @@ describe('Locations routes', () => {
         .post('/api/locations')
         .set({ token: adminToken })
         .send({
+          name: 'Lagos',
           femalePopulation: 200
         })
         .expect(400)
@@ -124,6 +141,7 @@ describe('Locations routes', () => {
         .post('/api/locations')
         .set({ token: adminToken })
         .send({
+          name: 'Lagos',
           femalePopulation: 200,
           malePopulation: 'not_an_integer'
         })
@@ -140,6 +158,7 @@ describe('Locations routes', () => {
         .post('/api/locations')
         .set({ token: adminToken })
         .send({
+          name: 'Lagos',
           femalePopulation: 200,
           malePopulation: 300,
           parentId: 'id'
@@ -157,6 +176,7 @@ describe('Locations routes', () => {
         .post('/api/locations')
         .set({ token: adminToken })
         .send({
+          name: 'Lagos',
           femalePopulation: 200,
           malePopulation: 300,
           parentId: 1
@@ -174,6 +194,7 @@ describe('Locations routes', () => {
         .post('/api/locations')
         .set({ token: adminToken })
         .send({
+          name: 'Lagos',
           femalePopulation: 200,
           malePopulation: 300
         })
