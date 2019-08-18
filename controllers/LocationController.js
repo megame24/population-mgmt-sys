@@ -1,5 +1,6 @@
 const { Location } = require('../database/models');
 const { throwError } = require('../helpers/errorHelper');
+const Sequelize = require('sequelize');
 
 /**
  * LocationController constructor
@@ -79,7 +80,13 @@ LocationController.deleteLocation = async (req, res, next) => {
  */
 LocationController.getLocations = async (req, res, next) => {
   try {
-    const locations = await Location.findAll();
+    const locations = await Location.findAll({
+      attributes: {
+        include: [[Sequelize.literal(
+          'COALESCE("femalePopulation", 0) + COALESCE("malePopulation", 0)'
+        ), 'totalPopulation']]
+      }
+    });
     res.status(200).json({ locations });
   } catch (err) {
     next(err);
